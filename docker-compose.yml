@@ -1,0 +1,8 @@
+redis:
+    restart: always
+    container_name: 'redis-micro-url'
+    image: 'redis:latest'
+    volumes:
+      - 'redisdata:/data'
+    ports:
+      - '6380:6379'
