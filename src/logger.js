@@ -1,9 +1,11 @@
+const chalk = require('chalk');
 
-const logger = async (ctx, next) => {
+const logger = (req, res, next) => {
   const start = Date.now();
-  await next();
+  next();
   const ms = Date.now() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  const body = JSON.stringify(req.body);
+  console.log(chalk.green(`${req.method} ${req.url} - ${ms}ms: ${body}`));
 };
 
 module.exports.logger = logger;
