@@ -2,9 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const service = require('./service');
+const { logger } = require('./logger');
 
 const app = express();
 const jsonParser = bodyParser.json();
+const PORT = 3000;
+
+app.use(jsonParser);
+app.use(logger);
 
 app.get('/:id', async (req, res) => {
   const id = String(req.params.id);
@@ -19,16 +24,17 @@ app.get('/:id', async (req, res) => {
 app.post('/generate', jsonParser, async (req, res, next) => {
   try {
     const longUrl = req.body.url;
-    const shortUrl = await service.shortenURL(longUrl);
+    const id = await service.shortenURL(longUrl);
+    const shortUrl = `http://localhost:${PORT}/${id}`;
     res.json({
       ok: true,
+      id,
       shortUrl,
+      longUrl,
     });
   } catch (e) {
     next(e);
   }
 });
-
-app.use(jsonParser);
 
 app.listen(3000);
