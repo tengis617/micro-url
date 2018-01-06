@@ -3,7 +3,6 @@ const chai = require('chai');
 const Redis = require('ioredis');
 
 const service = require('../src/service');
-const validation = require('../src/utils/validation');
 
 const { expect } = chai;
 const client = new Redis('6380');
