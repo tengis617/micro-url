@@ -27,4 +27,6 @@ module.exports = {
   generate,
   convertToBase62,
   generateRandomInt,
+  CHARSET,
+  MAX_LENGTH,
 };
