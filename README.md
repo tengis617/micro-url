@@ -4,6 +4,7 @@ a url shortening microservice using express and redis.
 ## Requirements
 * node 8 >
 * docker
+* yarn (optional) 
 
 ## Getting Started
 1. clone repo
