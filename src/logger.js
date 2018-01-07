@@ -5,7 +5,7 @@ const logger = (req, res, next) => {
   next();
   const ms = Date.now() - start;
   const body = JSON.stringify(req.body);
-  console.log(chalk.green(`${req.method} ${req.url} - ${ms}ms: ${body}`));
+  console.log(chalk.green(`${req.method} ${req.url} - ${ms}ms - req: ${body}`));
 };
 
 module.exports.logger = logger;
