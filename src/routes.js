@@ -1,9 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const service = require('./service');
+const { PORT } = require('./config');
 
-const PORT = 3000;
-const jsonParser = bodyParser.json();
 const routes = express.Router();
 
 routes.get('/:id', async (req, res) => {
@@ -12,7 +10,7 @@ routes.get('/:id', async (req, res) => {
     const url = await service.getLongUrl(id);
     res.redirect(url);
   } catch (e) {
-    res.send({ ok: false, message: e.message });
+    res.status(400).send({ ok: false, message: e.message });
   }
 });
 routes.post('/generate', async (req, res) => {
@@ -26,10 +24,11 @@ routes.post('/generate', async (req, res) => {
       shortUrl,
       longUrl,
     });
-  } catch (err) {
-    res.json({
+  } catch (e) {
+    const { message } = e;
+    res.status(400).json({
       ok: false,
-      err,
+      message,
     });
   }
 });

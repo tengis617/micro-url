@@ -2,8 +2,8 @@ const Redis = require('ioredis');
 const uid = require('./uid');
 const validation = require('./utils/validation');
 const errors = require('./utils/errors');
+const { REDIS_PORT } = require('./config');
 
-const REDIS_PORT = '6380';
 const client = new Redis(REDIS_PORT);
 
 const shortenURL = async (longUrl) => {
@@ -26,9 +26,11 @@ const getLongUrl = async (id) => {
   }
   // step 2: retrieve longUrl using key
   const longUrl = await client.get(id);
+  // step 3: handle error
   if (longUrl == null) {
     throw errors.ErrUrlNotFound(id);
   }
+  // step 4: return the url
   return longUrl;
 };
 
