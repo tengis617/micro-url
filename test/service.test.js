@@ -22,17 +22,17 @@ describe('service unit', () => {
       } catch (e) {
         err = e;
       }
-      expect(err.message).to.equal('invalid url.');
+      expect(err.message).to.equal(`invalid url: ${longUrl}`);
     });
     it('should throw error when url is not a valid url', async () => {
-      const longUrl = 'ht://ww.wiki.org/feafe';
+      const longUrl = 'fkeafea';
       let err;
       try {
         await service.shortenURL(longUrl);
       } catch (e) {
         err = e;
       }
-      expect(err.message).to.equal('invalid url.');
+      expect(err.message).to.equal(`invalid url: ${longUrl}`);
     });
   });
   describe('getLongUrl()', () => {
