@@ -3,11 +3,15 @@ const chai = require('chai');
 const Redis = require('ioredis');
 
 const service = require('../src/service');
+const { REDIS_PORT } = require('../src/config');
 
 const { expect } = chai;
-const client = new Redis('6380');
+const client = new Redis(REDIS_PORT);
 
 describe('service unit', () => {
+  beforeEach(async () => {
+    client.flushall();
+  });
   describe('shortenUrl()', () => {
     it('should return a string', async () => {
       const longUrl = 'https://en.wikipedia.org/wiki/URL_shortening';
