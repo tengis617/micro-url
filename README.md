@@ -6,12 +6,13 @@ a url shortening microservice using express and redis.
 2. run `docker-compose up` to start redis. (**note:** redis port has been changed to `6380`)
 3. run `yarn && yarn start` (**note:** yarn is just a personal preference, you can use npm)
 4. service will be running on `localhost:3000`
+You can also run `yar test` to run all tests
 
 ## API
 ### **POST /generate** 
 
 * **Data Params**
-`url` - URl to shorten 
+`url` - URL to shorten 
 
 * **Success Response:**
 
