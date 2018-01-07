@@ -2,5 +2,8 @@
     "extends": "airbnb-base",
     "plugins": [
         "mocha"
-    ]
+    ],
+    "rules": {
+        "no-console": 0
+    }
 }
