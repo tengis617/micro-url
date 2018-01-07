@@ -1,18 +1,22 @@
+const validUrl = require('valid-url');
+const uid = require('../uid');
+
+const isString = str => typeof str === 'string';
+const isWhitespaceOrEmpty = str => !/[^\s]/.test(str);
+const isValidChar = char => uid.CHARSET.indexOf(char) > -1;
+const hasValidChars = str => str.split('').every(isValidChar);
 
 const isValidUrl = (url) => {
-  const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
-  '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-  '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-  '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-  if (!pattern.test(url)) {
+  if (!validUrl.isUri(url)) {
     return false;
   }
   return true;
 };
 const isValidId = (id) => {
-  if (typeof id !== 'string' || id.length > 8) {
+  if (isWhitespaceOrEmpty(id) ||
+      !isString(id) ||
+      id.length > uid.MAX_LENGTH ||
+      !hasValidChars(id)) {
     return false;
   }
   return true;
