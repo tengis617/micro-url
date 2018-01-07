@@ -1,6 +1,10 @@
 # micro-url
 a url shortening microservice using express and redis.
 
+## Requirements
+* node 8 >
+* docker
+
 ## Getting Started
 1. clone repo
 2. run `docker-compose up` to start redis. (**note:** redis port has been changed to `6380`)
