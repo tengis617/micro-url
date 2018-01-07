@@ -8,16 +8,10 @@ a url shortening microservice using express and redis.
 4. service will be running on `localhost:3000`
 
 ## API
-### **generate short url** 
-* **URL**
+### **POST /generate** 
 
-  /generate
-
-* **Method:**
-
-  `POST`
 * **Data Params**
-**url** - URl to shorten 
+`url` - URl to shorten 
 
 * **Success Response:**
 
@@ -28,22 +22,13 @@ a url shortening microservice using express and redis.
   * **Code:** 400 Bad Request <br />
     **Content:** `{ ok: false, message: 'invalid url: example' }`
 
-### ** call url ** 
-* **URL**
-
-  /:id
-
-* **Method:**
-
-  `GET`
-
+### ** GET /:id ** 
 *  **URL Params**
 
    **Required:**
- 
    `id=[string]`
-
-
+* **Success Response:**
+  * Will redirect to long url
 * **Error Response:**
   * **Code:** 400 Bad Request <br />
     **Content:** `{ ok: false, message: 'No url found with id: example' }`
