@@ -22,7 +22,7 @@ a url shortening microservice using express and redis.
   * **Code:** 400 Bad Request <br />
     **Content:** `{ ok: false, message: 'invalid url: example' }`
 
-### ** GET /:id ** 
+### **GET /:id** 
 *  **URL Params**
 
    **Required:**
