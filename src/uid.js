@@ -2,6 +2,7 @@ const CHARSET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 const MAX_LENGTH = 8;
 
 // generate random int within the maximum range
+// TODO: use SHA2?
 const generateRandomInt = max => Math.floor(Math.random() * (max + 1));
 
 const convertToBase62 = (i) => {
